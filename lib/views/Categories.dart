@@ -1,6 +1,7 @@
 import 'package:app/objects/Category.dart';
 import 'package:app/util/Api.dart';
 import 'package:app/views/ArticleList.dart';
+import 'package:app/widgets/CategoriesWidget.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatefulWidget {
@@ -38,34 +39,11 @@ class _CategoriesState extends State<Categories> {
         future: categories,
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data != null) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, i) {
-                Category c = snapshot.data![i];
-                return ListTile(
-                  title: Text(c.name),
-                  onTap: () {
-                    if (c.links.subcategories != null) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>
-                              Categories(url: c.links.subcategories!.href, title: c.name))
-                      );
-                    } else if (c.links.articles != null) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>
-                              ArticleList(url: c.links.articles!.href, title: c.name))
-                      );
-                    }
-                  }
-                );
-              }
-            );
+            return CategoriesWidget(snapshot.data!);
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         },
       ),
