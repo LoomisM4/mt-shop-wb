@@ -19,15 +19,10 @@ class MyApp extends StatelessWidget {
       home: DefaultTabController(
         length: 4,
         child: Scaffold(
-          appBar: AppBar(
-            title: Text("TODO"),
-            foregroundColor: Colors.black,
-            backgroundColor: Colors.white,
-          ),
           body: const TabBarView(
             children: [
               Spotlight(),
-              Categories(),
+              Categories(title: "Kategorien"),
               Cart(),
               Map()
             ]
