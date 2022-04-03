@@ -22,13 +22,15 @@ class CategoriesWidget extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) =>
-                          Categories(url: c.links.subcategories!.href, title: c.name))
+                          Categories(url: c.links.subcategories!.href, title: c.name)
+                      )
                   );
                 } else if (c.links.articles != null) {
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) =>
-                          ArticleList(url: c.links.articles!.href, title: c.name))
+                          ArticleList(url: c.links.articles!.href, title: c.name)
+                      )
                   );
                 }
               }

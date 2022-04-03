@@ -5,6 +5,7 @@ import 'package:app/objects/Article.dart';
 import 'package:app/objects/Category.dart';
 import 'package:app/objects/Link.dart';
 import 'package:app/objects/Response.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
@@ -41,7 +42,8 @@ class Api {
     return http.get(Uri.parse(url));
   }
 
-  static Future<http.Response> image(String url) {
-    return http.get(Uri.parse(url));
+  static Future<Image?> image(String url) async {
+    Image i = Image.network(url);
+    return i;
   }
 }

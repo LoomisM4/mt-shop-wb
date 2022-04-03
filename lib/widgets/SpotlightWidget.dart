@@ -13,7 +13,10 @@ class SpotlightWidget extends StatelessWidget {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, i) {
-        return AsyncImageWidget(data[i].links!.spotlightImage!.href);
+        return AsyncImageWidget(
+          imgUrl: data[i].links!.spotlightImage!.href,
+          detailsUrl: data[i].links!.details!.href
+        );
       }
     );
   }
