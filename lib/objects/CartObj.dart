@@ -1,14 +1,16 @@
-import 'dart:ffi';
+import 'dart:developer';
 
 import 'package:app/objects/Article.dart';
 
 class CartObj {
-  static final CartObj _cartObj = CartObj();
+  static final CartObj _cartObj = CartObj._internal();
+  factory CartObj() => _cartObj;
+
   late List<CartArticle> articles;
 
-  factory CartObj() {
-    _cartObj.articles = List.empty(growable: true);
-    return _cartObj;
+  CartObj._internal() {
+    articles = List.empty(growable: true);
+    log("HALLO");
   }
 
   double calcTotalPrice() {
