@@ -32,7 +32,7 @@ class CartObj {
     bool alreadyContains = articles.any((element) => element.article == article);
     if (alreadyContains) {
       CartArticle ca = articles.firstWhere((element) => element.article == article);
-      if (ca.quantity > 1) {
+      if (ca.quantity > 0) {
         ca.quantity--;
       }
     }

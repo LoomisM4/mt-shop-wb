@@ -54,7 +54,7 @@ class _DetailsState extends State<Details> {
                       onPressed: () {
                         CartObj().add(a.data!);
                       },
-                      child: Text("In den Warenkorb")
+                      child: const Text("In den Warenkorb")
                   )
                 ],
               ),
