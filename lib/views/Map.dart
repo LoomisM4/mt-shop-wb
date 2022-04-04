@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import "package:latlong2/latlong.dart" as latlng;
 import 'package:location/location.dart';
 
 class Map extends StatefulWidget {
@@ -49,10 +51,17 @@ class _MapState extends State<Map> {
         future: locationData,
         builder: (context, location) {
           if (location.hasData) {
-            return Column(
-              children: [
-                Text("long " + location.data!.longitude.toString()),
-                Text("lat " + location.data!.latitude.toString()),
+            return FlutterMap(
+              options: MapOptions(
+                center: latlng.LatLng(location.data!.latitude!, location.data!.longitude!),
+                zoom: 15,
+                screenSize: const Size(100, 100)
+              ),
+              layers: [
+                TileLayerOptions(
+                  urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c'],
+                )
               ],
             );
           } else if (location.hasError) {
