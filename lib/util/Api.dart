@@ -34,8 +34,14 @@ class Api {
     }
   }
 
-  static Future<http.Response> details(String url) {
-    return http.get(Uri.parse(url));
+  static Future<Article?> details(String url) async {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      return Article.fromJson(json);
+    } else {
+      return null;
+    }
   }
 
   static Future<http.Response> articles(String url) {

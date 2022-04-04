@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AsyncImageWidget extends StatefulWidget {
-  AsyncImageWidget({required this.imgUrl, required this.detailsUrl});
+  AsyncImageWidget({required this.imgUrl, this.detailsUrl});
 
-  String imgUrl, detailsUrl;
+  String imgUrl;
+  String? detailsUrl;
 
   @override
   _AsyncImageWidgetState createState() => _AsyncImageWidgetState(
@@ -16,11 +17,12 @@ class AsyncImageWidget extends StatefulWidget {
 }
 
 class _AsyncImageWidgetState extends State<AsyncImageWidget> {
-  _AsyncImageWidgetState({required this.imgUrl, required this.detailsUrl});
+  _AsyncImageWidgetState({required this.imgUrl, this.detailsUrl});
 
   late Future<Image?> image;
 
-  final String imgUrl, detailsUrl;
+  final String imgUrl;
+  final String? detailsUrl;
 
   @override
   void initState() {
@@ -36,12 +38,14 @@ class _AsyncImageWidgetState extends State<AsyncImageWidget> {
         if (img.hasData) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>
-                      Details(detailsUrl)
-                  )
-              );
+              if (detailsUrl != null) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>
+                        Details(detailsUrl!)
+                    )
+                );
+              }
             },
             child: img.data!,
           );
