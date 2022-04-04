@@ -1,5 +1,6 @@
 import 'package:app/objects/Article.dart';
 import 'package:app/objects/CartObj.dart';
+import 'package:app/objects/Tabbar.dart';
 import 'package:app/util/Api.dart';
 import 'package:app/widgets/AsyncImageWidget.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _DetailsState extends State<Details> {
             return const CircularProgressIndicator();
           }
         }
-      )
+      ),
     );
   }
 }
