@@ -44,8 +44,14 @@ class Api {
     }
   }
 
-  static Future<http.Response> articles(String url) {
-    return http.get(Uri.parse(url));
+  static Future<List<Article>> articles(String url) async {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      return Response.fromJson(json).embedded.articles ?? List.empty();
+    } else {
+      return List.empty();
+    }
   }
 
   static Future<Image?> image(String url) async {
