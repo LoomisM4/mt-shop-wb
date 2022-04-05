@@ -1,8 +1,8 @@
 import 'package:app/objects/Article.dart';
 import 'package:app/objects/CartObj.dart';
-import 'package:app/objects/Tabbar.dart';
 import 'package:app/util/Api.dart';
 import 'package:app/widgets/AsyncImageWidget.dart';
+import 'package:app/widgets/HorizontalScroller.dart';
 import 'package:flutter/material.dart';
 
 class Details extends StatefulWidget {
@@ -39,25 +39,23 @@ class _DetailsState extends State<Details> {
         future: article,
         builder: (context, a) {
           if (a.hasData) {
-            return Center(
-              child: Column(
-                children: [
-                  /**ListView.builder(
-                    itemCount: a.data!.links!.images!.length,
-                    itemBuilder: (context, i) {
+            return Column(
+              children: [
+                HorizontalScroller(
+                  children:
+                    List.generate(a.data!.links?.images?.length ?? 0, (i) {
                       return AsyncImageWidget(imgUrl: a.data!.links!.images![i].href);
-                    }
-                  ),**/
-                  Text(a.data!.name ?? ""),
-                  Text(a.data!.description ?? ""),
-                  ElevatedButton(
-                      onPressed: () {
-                        CartObj().add(a.data!);
-                      },
-                      child: const Text("In den Warenkorb")
-                  )
-                ],
-              ),
+                    })
+                ),
+                Text(a.data!.name ?? ""),
+                Text(a.data!.description ?? ""),
+                ElevatedButton(
+                  onPressed: () {
+                    CartObj().add(a.data!);
+                  },
+                  child: const Text("In den Warenkorb")
+                ),
+              ],
             );
           } else if (a.hasError) {
             return Text(a.error.toString());

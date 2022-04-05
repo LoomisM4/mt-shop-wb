@@ -41,17 +41,17 @@ class _ArticleListState extends State<ArticleList> {
             return GridView.count(
               crossAxisCount: 2,
               children:
-              List.generate(list.data!.length, (i) {
-                if (list.data![i].links?.preview != null) {
-                  return AsyncImageWidget(
-                    imgUrl: list.data![i].links!.preview!.href,
-                    detailsUrl: list.data![i].links!.details?.href);
-                } else {
-                  return Center(
-                    child: const Text("Keine Vorschau verfügbar")
-                  );
-                }
-              })
+                List.generate(list.data!.length, (i) {
+                  if (list.data![i].links?.preview != null) {
+                    return AsyncImageWidget(
+                      imgUrl: list.data![i].links!.preview!.href,
+                      detailsUrl: list.data![i].links!.details?.href);
+                  } else {
+                    return const Center(
+                      child: Text("Keine Vorschau verfügbar")
+                    );
+                  }
+                })
             );
           } else if (list.hasError) {
             return Text(list.error.toString());
