@@ -18,9 +18,9 @@ class CartObj {
   }
 
   add(Article article) {
-    bool alreadyContains = articles.any((element) => element.article == article);
+    bool alreadyContains = articles.any((element) => element.article.id == article.id);
     if (alreadyContains) {
-      CartArticle ca = articles.firstWhere((element) => element.article == article);
+      CartArticle ca = articles.firstWhere((element) => element.article.id == article.id);
       ca.quantity++;
     } else {
       CartArticle ca = CartArticle(article: article);
@@ -29,9 +29,9 @@ class CartObj {
   }
 
   remove(Article article) {
-    bool alreadyContains = articles.any((element) => element.article == article);
+    bool alreadyContains = articles.any((element) => element.article.id == article.id);
     if (alreadyContains) {
-      CartArticle ca = articles.firstWhere((element) => element.article == article);
+      CartArticle ca = articles.firstWhere((element) => element.article.id == article.id);
       if (ca.quantity > 0) {
         ca.quantity--;
       }
