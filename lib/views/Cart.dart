@@ -1,4 +1,5 @@
 import 'package:app/objects/CartObj.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
@@ -66,6 +67,23 @@ class _CartState extends State<Cart> {
             ElevatedButton(
               onPressed: () {
                 cart.articles.clear();
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text("Erfolg"),
+                      content: Text("Bestellung erfolgreich abgeschickt"),
+                      actions: [
+                        TextButton(
+                            child: const Text("Ok"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            }
+                          )
+                      ],
+                    );
+                  }
+                );
                 setState(() {
                   cart = CartObj();
                 });
