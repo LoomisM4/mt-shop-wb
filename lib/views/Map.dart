@@ -18,16 +18,10 @@ class _MapState extends State<Map> {
     bool enabled = await location.serviceEnabled();
     if (!enabled) {
       enabled = await location.requestService();
-      if (!enabled) {
-        // TODO
-      }
     }
     PermissionStatus permission = await location.hasPermission();
     if (permission == PermissionStatus.denied) {
       permission = await location.requestPermission();
-      if (permission == PermissionStatus.denied) {
-        // TODO
-      }
     }
 
     return location.getLocation();
@@ -51,6 +45,8 @@ class _MapState extends State<Map> {
         future: locationData,
         builder: (context, location) {
           if (location.hasData) {
+            var newLat = location.data!.latitude! + 0.002;
+            var newLong = location.data!.longitude! - 0.003;
             return FlutterMap(
               options: MapOptions(
                 center: latlng.LatLng(location.data!.latitude!, location.data!.longitude!),
@@ -61,7 +57,23 @@ class _MapState extends State<Map> {
                 TileLayerOptions(
                   urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                   subdomains: ['a', 'b', 'c'],
-                )
+                ),
+                MarkerLayerOptions(
+                  markers: [
+                    Marker(
+                      point: latlng.LatLng(newLat, newLong),
+                      builder: (context) {
+                        return const Icon(Icons.pin_drop);
+                      }
+                    ),
+                    Marker(
+                        point: latlng.LatLng(location.data!.latitude!, location.data!.longitude!),
+                        builder: (context) {
+                          return const Icon(Icons.person);
+                        }
+                    )
+                  ]
+                ),
               ],
             );
           } else if (location.hasError) {
