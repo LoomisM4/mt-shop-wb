@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/objects/Links.dart';
 
 class Category {
@@ -13,7 +15,7 @@ class Category {
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
       categoryId: json["categoryId"],
-      name: json["name"],
+      name: utf8.decode(json["name"].toString().codeUnits),
       links: Links.fromJson(json["_links"])
   );
 }
