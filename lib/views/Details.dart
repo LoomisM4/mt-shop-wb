@@ -47,14 +47,13 @@ class _DetailsState extends State<Details> {
                       return AsyncImageWidget(imgUrl: a.data!.links!.images![i].href);
                     })
                 ),
-                Text(a.data!.name ?? ""),
-                Text(a.data!.description ?? ""),
                 ElevatedButton(
                   onPressed: () {
                     CartObj().add(a.data!);
                   },
                   child: const Text("In den Warenkorb")
                 ),
+                Text(a.data!.description ?? ""),
               ],
             );
           } else if (a.hasError) {
