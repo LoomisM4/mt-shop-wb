@@ -10,19 +10,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Api {
   static const baseUrl = "https://shop.marcelwettach.eu";
-  static bool online = true;
 
   static Future<Map<String, dynamic>> webOrCache(String url) async {
     final prefs = await SharedPreferences.getInstance();
-    if (online) {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        log("caching");
-        prefs.setString(url, response.body);
-        return jsonDecode(response.body);
-      } else {
-        return <String, dynamic>{};
-      }
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      log("caching");
+      prefs.setString(url, response.body);
+      return jsonDecode(response.body);
     } else {
       log("serving from cache");
       return jsonDecode(prefs.getString(url) ?? "");
@@ -55,13 +50,11 @@ class Api {
   static Future<Image?> image(String url) async {
     final prefs = await SharedPreferences.getInstance();
     String? base64;
-    if (online) {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        base64 = base64Encode(response.bodyBytes);
-        log("caching");
-        prefs.setString(url, base64);
-      }
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      base64 = base64Encode(response.bodyBytes);
+      log("caching");
+      prefs.setString(url, base64);
     } else {
       log("serving from cache");
       base64 = prefs.getString(url);
