@@ -53,6 +53,7 @@ class _DetailsState extends State<Details> {
                   },
                   child: const Text("In den Warenkorb")
                 ),
+                Text(a.data!.name ?? "", style: const TextStyle(fontSize: 20)),
                 Text(a.data!.description ?? ""),
               ],
             );
