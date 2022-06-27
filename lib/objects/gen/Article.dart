@@ -1,4 +1,4 @@
-import 'package:app/objects/Links.dart';
+import 'package:app/objects/gen/Links.dart';
 
 class Article {
   Article({

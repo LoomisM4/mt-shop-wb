@@ -10,61 +10,62 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget { // 1
+  const MyApp({Key? key}) : super(key: key); // 3
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CupertinoTabScaffold(
-        tabBar: CupertinoTabBar(
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.star)),
-              BottomNavigationBarItem(icon: Icon(Icons.list)),
-              BottomNavigationBarItem(icon: Icon(Icons.shopping_cart)),
-              BottomNavigationBarItem(icon: Icon(Icons.map))
+  @override // 1
+  Widget build(BuildContext context) { // 1
+    return MaterialApp( // 2
+      home: CupertinoTabScaffold( // 2
+        tabBar: CupertinoTabBar( // 2
+            items: const [ // 1
+              BottomNavigationBarItem(icon: Icon(Icons.star)), // 4
+              BottomNavigationBarItem(icon: Icon(Icons.list)), // 4
+              BottomNavigationBarItem(icon: Icon(Icons.shopping_cart)), // 4
+              BottomNavigationBarItem(icon: Icon(Icons.map)) // 4
             ]
         ),
-        tabBuilder: (context, i) {
-          switch (i) {
-            case 0:
-              return CupertinoTabView(
-                  builder: (context) {
-                    return const CupertinoPageScaffold(
-                        child: Spotlight()
+        tabBuilder: (context, i) { // 1
+          switch (i) { // 1
+            case 0: // 1
+              return CupertinoTabView( // 2
+                  builder: (context) { // 1
+                    return const CupertinoPageScaffold( // 2
+                        child: Spotlight() // 2
                     );
                   }
               );
-            case 1:
-              return CupertinoTabView(
-                  builder: (context) {
-                    return const CupertinoPageScaffold(
-                        child: Categories(title: "Kategorien")
+            case 1: // 1
+              return CupertinoTabView( // 2
+                  builder: (context) { // 1
+                    return const CupertinoPageScaffold( // 2
+                        child: Categories(title: "Kategorien") // 3
                     );
                   }
               );
-            case 2:
-              return CupertinoTabView(
-                  builder: (context) {
-                    return const CupertinoPageScaffold(
-                        child: Cart()
+            case 2: // 1
+              return CupertinoTabView( // 2
+                  builder: (context) { // 1
+                    return const CupertinoPageScaffold( // 2
+                        child: Cart() // 2
                     );
                   }
               );
-            case 3:
-              return CupertinoTabView(
-                  builder: (context) {
-                    return const CupertinoPageScaffold(
-                        child: Map()
+            case 3: // 1
+              return CupertinoTabView( // 2
+                  builder: (context) { // 1
+                    return const CupertinoPageScaffold( // 2
+                        child: Map() // 2
                     );
                   }
               );
-            default:
-              return const Text("Es ist ein Fehler aufgetreten");
+            default: // 1
+              return const Text("Es ist ein Fehler aufgetreten"); // 2
           }
         }
       ),
     );
   }
 }
+
+// 67

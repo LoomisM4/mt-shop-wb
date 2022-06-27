@@ -1,4 +1,4 @@
-import 'package:app/objects/Embedded.dart';
+import 'package:app/objects/gen/Embedded.dart';
 
 class Response {
   Response({

@@ -1,5 +1,5 @@
-import 'package:app/objects/Article.dart';
-import 'package:app/objects/Category.dart';
+import 'package:app/objects/gen/Article.dart';
+import 'package:app/objects/gen/Category.dart';
 
 class Embedded {
   Embedded({

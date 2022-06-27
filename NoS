@@ -1,0 +1,22 @@
+mt-shop-wb                                          815
+    objects/                                70
+        gen/                        6
+        CartObj.dart                64
+    util/                                   78
+        Api.dart                    78
+    views/                                  460
+        ArticleList.dart            76
+        Cart.dart                   106
+        Categories.dart             51
+        Details.dart                78
+        Map.dart                    103
+        Spotlight.dart              46
+    widgets/                                134
+        AsyncImageWidget.dart       46
+        CategoriesWidget.dart       46
+        HorizontalScroller.dart     20
+        SpotlightWidget.dart        22
+    main.dart                               67
+
+    AndroidManifest.xml                     4
+    Info.plist                              2
